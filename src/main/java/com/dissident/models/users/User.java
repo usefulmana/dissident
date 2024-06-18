@@ -1,5 +1,6 @@
 package com.dissident.models.users;
 
+import com.dissident.models.posts.Post;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
@@ -7,7 +8,7 @@ import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 import java.time.LocalDate;
-import java.util.UUID;
+import java.util.*;
 
 @Entity(name = "USERS")
 @Data
@@ -47,4 +48,19 @@ public class User {
     @Enumerated(EnumType.STRING)
     private AccountStatus accountStatus = AccountStatus.ACTIVE;
 
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "user_id")
+    private List<Post> posts = new ArrayList<>();
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name="FOLLOWS",
+            joinColumns={@JoinColumn(name="following_user_id")},
+            inverseJoinColumns={@JoinColumn(name="followed_user_id")})
+    private Set<User> followers = new HashSet<>();
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name="FOLLOWS",
+            joinColumns={@JoinColumn(name="followed_user_id")},
+            inverseJoinColumns={@JoinColumn(name="following_user_id")})
+    private Set<User> following = new HashSet<>();
 }
