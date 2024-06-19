@@ -4,6 +4,7 @@ import com.dissident.models.posts.Post;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
@@ -19,24 +20,23 @@ public class User {
     private UUID id;
 
     @Column(nullable = false, unique = true)
-    @Size(min = 5, max = 50)
+    @Size(min = 5, max = 50, message = "username must be between 5 and 50 characters")
     private String username;
 
     @Column(nullable = false, unique = true)
-    @Size(min = 10, max = 320)
+    @Size(min = 10, max = 320, message = "Email must be between 10 and 320 characters")
     @Email
     private String email;
 
     @Column(nullable = false)
+    @NotNull
     private LocalDate joinedDate = LocalDate.now();
 
     @Column(nullable = false)
     @Size(max = 30)
-    @JsonIgnore
     private String password;
 
     @Column(nullable = false)
-    @JsonIgnore
     private String passwordSalt;
 
     private LocalDate birthDay;
@@ -63,4 +63,7 @@ public class User {
             joinColumns={@JoinColumn(name="followed_user_id")},
             inverseJoinColumns={@JoinColumn(name="following_user_id")})
     private Set<User> following = new HashSet<>();
+
+    @Version
+    private int version;
 }

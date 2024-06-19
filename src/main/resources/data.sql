@@ -1,6 +1,6 @@
 INSERT INTO USERS
-(ID, USERNAME, EMAIL, JOINED_DATE, PASSWORD, PASSWORD_SALT, BIRTH_DAY, GENDER, ACCOUNT_STATUS)
+(ID, USERNAME, EMAIL, JOINED_DATE, PASSWORD, PASSWORD_SALT, BIRTH_DAY, GENDER, ACCOUNT_STATUS, VERSION)
 VALUES
-(RANDOM_UUID(), 'user1', 'fda1@gmail.com', CURRENT_DATE(), 'haha1', 'bd', CURRENT_DATE(), 'MALE', 'ACTIVE'),
-(RANDOM_UUID(), 'user2', 'fda2@gmail.com', CURRENT_DATE(), 'haha2', 'bd', CURRENT_DATE(), 'FEMALE', 'ACTIVE'),
-(RANDOM_UUID(), 'user3', 'fda3@gmail.com', CURRENT_DATE(), 'haha3', 'bd', CURRENT_DATE(), 'OTHER', 'ACTIVE');
+(RANDOM_UUID(), 'user1', 'fda1@gmail.com', CURRENT_DATE(), 'haha1', 'bd', CURRENT_DATE(), 'MALE', 'ACTIVE', 0),
+(RANDOM_UUID(), 'user2', 'fda2@gmail.com', CURRENT_DATE(), 'haha2', 'bd', CURRENT_DATE(), 'FEMALE', 'ACTIVE', 0),
+(RANDOM_UUID(), 'user3', 'fda3@gmail.com', CURRENT_DATE(), 'haha3', 'bd', CURRENT_DATE(), 'OTHER', 'ACTIVE', 0);

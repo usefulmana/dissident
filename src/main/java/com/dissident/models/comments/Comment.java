@@ -20,4 +20,7 @@ public class Comment {
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private CommentStatus commentStatus;
+
+    @Version
+    private int version;
 }

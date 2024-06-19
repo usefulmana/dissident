@@ -30,4 +30,6 @@ public class Post {
 
     private LocalDateTime updatedAt;
 
+    @Version
+    private int version;
 }
